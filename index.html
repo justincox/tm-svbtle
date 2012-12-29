@@ -178,7 +178,15 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 <form id="searchform" action="/search" method="get">
                     <input type="text" id="s" name="q" value="{SearchQuery}">
                 </form>
-                {block:IfShowSearch}    	
+                {block:IfShowSearch}
+                
+                {block:HasPages}
+                {block:Pages}
+                <li class="link">
+                    <a href="{URL}">{Label}</a>
+                </li>
+                {/block:Pages}
+                {/block:HasPages}
                 
                 {block:IfFacebook}
                 <li class="link facebook">
@@ -215,7 +223,7 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     <a href="/submit">{SubmitLabel}</a> 
                 </li>
                 {/block:SubmissionsEnabled}
-                		
+                    	
             </ul>
             
             <aside id="svbtle_linkback">
