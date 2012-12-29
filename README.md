@@ -17,7 +17,7 @@ At the bottom of your blog's customization panel find the section that says "Use
 
 ###Can I customize tm-svbtle?
 
-Of course! There are many options, including the main color, the fonts, and multiple options like showing tags, enabling infinite scrolling, and Disqus comments.
+Of course! There are many options, including the main color, the fonts, and multiple options like showing tags, enabling infinite scrolling, and more.
 
 ###Does tm-svbtle support custom languages?
 
@@ -34,6 +34,7 @@ Tumblr's Theme Garden is a boys-club that isn't friendly to individual developer
 
 #Change Log
 
+Version 1.0.1 - Removed Disqus
 Version 1.0 - Posted to GitHub
 
 #License
