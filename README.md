@@ -34,6 +34,7 @@ Tumblr's Theme Garden is a boys-club that isn't friendly to individual developer
 
 #Change Log
 
+Version 1.0.2 - Added Pages Support
 Version 1.0.1 - Removed Disqus
 Version 1.0 - Posted to GitHub
 
