@@ -1,0 +1,656 @@
+<!--
+tm-svbtle is a fork of wp-svbtle (https://github.com/gravityonmars/wp-svbtle) by Gravity on Mars (http://themeskult.com/)
+tm-svbtle is released under the GNU General Public License v2.0 (http://www.gnu.org/licenses/gpl-2.0.html)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html lang="en-US" class="no-js ie ie6 lte7 lte8 lte9"><![endif]--> 
+<!--[if IE 7 ]><html lang="en-US" class="no-js ie ie7 lte7 lte8 lte9"><![endif]-->
+<!--[if IE 8 ]><html lang="en-US" class="no-js ie ie8 lte8 lte9"><![endif]-->
+<!--[if IE 9 ]><html lang="en-US" class="no-js ie ie9 lte9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en-US" class="no-js"><!--<![endif]-->
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.5, minimum-scale=0.5">
+        <title>{Title}</title>
+        <link rel="profile" href="http://gmpg.org/xfn/11" />
+        <link rel="stylesheet" type="text/css" media="all" href="http://static.tumblr.com/tytjlvu/kSfmfpl5c/style.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.5, minimum-scale=0.5">
+        <link rel="shortcut icon" href="{Favicon}">
+        <link rel="alternate" type="application/rss+xml" href="{RSS}">
+        {block:Description}<meta name="description" content="{MetaDescription}" />{/block:Description}
+        <!--[if lt IE 9]>
+            <script src="http://static.tumblr.com/tytjlvu/MBumfpl8f/html5.js"></script>
+        <![endif]-->
+        
+        {block:IfInfinateScroll}
+        <script type="text/javascript" src="http://static.tumblr.com/tytjlvu/kCZmfplkh/infinitescrolling.js"></script>
+        {/block:IfInfinateScroll}
+        
+        <meta name="color:Main" content="#2FAACE"/>
+        
+        <meta name="font:Body" content="Avenir,Helvetica,Arial,sans-serif;"/>
+        <meta name="font:Title" content="Baskerville,Georgia,serif;"/>
+        
+        <meta name="if:Infinate Scroll" content="0"/>
+        <meta name="if:Show Anchor" content="1"/>
+        <meta name="if:Show Dates" content="0"/>
+        <meta name="if:Show HD Photo Link" content="0"/>
+        <meta name="if:Show Notes" content="0"/>
+        <meta name="if:Show Search" content="1"/>
+        <meta name="if:Show Tags" content="0"/>
+        
+        <meta name="image:Anchor" content="http://static.tumblr.com/tytjlvu/N6Tmfpfnc/anchor.png"/> 
+               
+        <meta name="text:Disqus" content=""/>
+        <meta name="text:Facebook" content=""/>
+        <meta name="text:Pinterest" content=""/>
+        <meta name="text:Twitter" content=""/>
+        <meta name="text:YouTube" content=""/>
+        
+        <style>
+        /* Custom Colors */
+        blockquote {border-color: {color:Main};}aside#logo,aside#logo div a,ul#user_meta a:hover span.link_logo_inside,ul#user_meta a:hover span.link_logo,aside.kudo.complete span.circle {background-color: {color:Main};}section.preview header#begin h2,ul#user_meta a:hover,nav.pagination span.next a,nav.pagination span.prev a {color: {color:Main};}ul#user_meta a:hover,nav.pagination span.next a,nav.pagination span.prev a {border-color: {color:Main};}::-moz-selection { background: {color:Main}; color: #fff; text-shadow: none;}::selection { background: {color:Main}; color: #fff; text-shadow: none;}
+        p a:hover, p a:visited:hover,a.tag:hover, a.tag:visited:hover, article h2 a:hover, article h2 a:visited:hover, span.high-res a:hover, span.high-res a:visited:hover, span.post-time a:hover, span.post-time a:visited:hover, li.note span.action a:hover, li.note span.action a:visited:hover, a.more_notes_link:hover, a.more_notes_link:visited:hover, ul.meta li a:hover, ul.meta li a:visited:hover { color: {color:Main}; }
+        article blockquote blockquote { border-color: {color:Main}; opacity: 0.9; }
+        article blockquote blockquote blockquote { border-color: {color:Main}; opacity: 0.8; } 
+        article blockquote blockquote blockquote blockquote { border-color: {color:Main}; opacity: 0.7; }
+        article blockquote blockquote blockquote blockquote blockquote { border-color: {color:Main}; opacity: 0.6; }
+        article blockquote blockquote blockquote blockquote blockquote blockquote { border-color: {color:Main}; opacity: 0.5; }
+        article blockquote blockquote blockquote blockquote blockquote blockquote { border-color: {color:Main}; opacity: 0.4; }
+        article blockquote blockquote blockquote blockquote blockquote blockquote { border-color: {color:Main}; opacity: 0.3; }
+        article blockquote blockquote blockquote blockquote blockquote blockquote { border-color: {color:Main}; opacity: 0.2; }
+        article blockquote blockquote blockquote blockquote blockquote blockquote { border-color: {color:Main}; opacity: 0.1; }
+        p.quote,ul.chat li,p.question { border-color: {color:Main}; }
+
+        
+        /* Custom Fonts */
+        body{font-family:{font:Body};}
+        p,div.quote{font-family:{font:Body};}
+        article h2 a:link,article h2 a:hover,article h2 a:visited,article h2 a:active{font-family:{font:Body};font-size:26px;}
+        header#sidebar h1#blog_name a{font-family:{font:Title};}
+        
+        /* Custom Images */
+        article h2 img.scalable {background-image:url("{image:Anchor}");}
+        aside#logo div a{background-image: url("{PortraitURL-64}");}
+        #searchform #s {background: url("http://static.tumblr.com/tytjlvu/HLomfrpzn/icon-search.png") 14px center no-repeat;}
+        
+        /* Changed CSS */
+        body{background-color:#fff;}
+                
+        time#top_time { font-size: 22px; }
+        time#top_time span.tag:before { content: "#"; }
+        time#top_time span.search_query:before,h2.entry-title span.search_query:before { content: open-quote; }
+        time#top_time span.search_query:after,h2.entry-title span.search_query:after { content: close-quote; }
+        
+        aside#svbtle_linkback { font-size: 55%; }
+                
+        /* Text */
+        h1{font-size:28px;}
+        h2{font-size:26px;}
+        h3{font-size:25px;}
+        h4{font-size:23px;}
+        h5{font-size:23px}
+        h6{font-size:22px;}
+        p{font-size:18px;}
+        blockquote{font-size:18px;}
+        article.post ul li,article.post ol li{font-size:18px;}
+        
+        /* Links */
+        p a,a:tag,article h2 a:link,li.note span.action a:link,a.more_notes_link:link,ul.meta li a:link{ border-bottom: 1px solid #CCC; color: #000; }
+        p a:visited,a.tag:visited,article h2 a:visited,li.note span.action a:visited,a:more_notes_link:visited,ul.meta li a:visited { color:#4d4d4d; }
+        
+        /* Posts */
+        article h2 img.scalable{height:22px;width:22px;}
+        article.post h2 a.anchor:link{border: 0;}
+        article.post h2 a.anchor:hover{background: transparent;}
+        p.more { font-size: 85%; }
+                
+        code.tags { font-family: {font:Body}; font-size: 75%; }
+        a.tag:before { content: "#"; }
+        
+        ul.meta { list-style-type: none; margin: 0px; padding: 0px; }
+        ul.meta li.date,ul.meta li.reblog,ul.meta li.source { list-style-type: none; display: inline; margin-left: 0; padding-left: 0; margin-right: 10px; font-size: 75%; }        
+        
+        /* Photo Post */
+        span.high-res { font-size: 75%; }
+        span.high-res a{border-bottom: 1px solid #CCC; color: #000;}
+        
+        /* Quote Posts */
+        p.quote { border-left: 10px solid {color:Main}; margin-left:0; margin-top:0; padding-left:18px; }
+        p.quote:before,p.quote:after {color:#ccc;font-weight: bold; font-size: 200%;vertical-align: -10px;}
+        p.quote:before {content:open-quote;}
+        p.quote:after {content:close-quote;}
+        
+        /* Chat Posts */
+        ul.chat {list-style-type: none; list-style: none; padding-left: 0; margin-left: 0;}
+        ul.chat li {border-bottom: 1px solid #CCC; border-left: 10px solid {color:Main}; margin-left: 0; margin-top:0; padding-left:18px; list-style-type: none; }
+        ul.chat li span.label {font-weight: bold;}
+        ul.chat li.user_1 {}
+        ul.chat li.user_2 {opacity: 0.8;}
+        ul.chat li.user_3 {opacity: 0.6;}
+        ul.chat li.user_4 {opacity: 0.4;}
+        ul.chat li.user_5 {opacity: 0.2;}
+        
+        /* Audio Posts */
+        img.album-art { float: left; width: 72px; height: 72px; margin-right: 5px; }
+        
+        /* Answer Posts */
+        h2.entry-title img.avatar { margin-right: 10px; display: inline; float: left; border-radius: 15px; }
+        p.question { border-left: 10px solid; margin-left:0; margin-top:0; padding-left:18px; }
+                
+        /* Post Notes */
+        div#post_notes{border:none;display:block;padding-top:10px;padding-bottom:10px;margin-left:-50px;margin-right:0;width:auto;border-left:none;border-right:none;padding-left:50px}
+        div#post_notes ol.notes { list-style-type: none; padding-left: 0; margin-left: 0; }
+        div#post_notes ol.notes li.note { font-size: 75%; padding: 0; }
+        div#post_notes ol.notes li.note img.avatar { margin-right: 10px; display: inline; float: left; border-radius: 10px; }
+        div#post_notes ol.notes li.note .answer_contnet { font-weight: normal; }
+        div#post_notes ol.notes li.note blockquote { margin-left: 25px; font-size: 12px; }
+        div#post_notes ol.notes li.note blockquote a { border-bottom: none; }
+        div#post_notes ol.notes li.note a.more_notes_link { font-weight: bold; font-size: 125%; } 
+        
+        
+
+        </style>
+        
+        
+    </head>
+    <body class="home blog">
+        <header id="sidebar">
+            <aside id="logo" class="clearfix">
+                <div class="clearfix">
+                    <a href="/">{Title}</a>
+                </div>
+            </aside>
+            
+            <ul id="user_meta">
+                <li class="blog_name">  
+                    <h1 id="blog_name">
+                        <a href="/">{Title}</a>
+                    </h1>
+                </li>
+                <li class="tagline">
+                    <h2 id="tagline">{Description}</h2>
+                </li>
+                
+                {block:IfShowSearch}
+                <form id="searchform" action="/search" method="get">
+                    <input type="text" id="s" name="q" value="{SearchQuery}">
+                </form>
+                {block:IfShowSearch}    	
+                
+                {block:IfFacebook}
+                <li class="link facebook">
+                    <a href="http://facebook.com/{text:Facebook}">Facebook</a>
+                </li>
+                {/block:IfFacebook}
+                
+                {block:IfPinterest}
+                <li class="link pinterest">
+                    <a href="http://pinterest.com/{text:Pinterest}">Pinterest</a>
+                </li>
+                {/block:IfPinterest}
+                
+                {block:IfTwitter}
+                <li class="link twitter">
+                    <a href="http://twitter.com/{text:Twitter}">Twitter</a>
+                </li>
+                {/block:IfTwitter}
+                
+                {block:IfYouTube}
+                <li class="link youtube">
+                    <a href="http://youtube.com/{text:YouTube}">YouTube</a>
+                </li>
+                {/block:IfYouTube}
+                
+                {block:AskEnabled}
+                <li class="link email">
+                    <a href="/ask">{AskLabel}</a> 
+                </li>
+                {block:AskEnabled}
+                
+                {block:SubmissionsEnabled}
+                <li class="link email">
+                    <a href="/submit">{SubmitLabel}</a> 
+                </li>
+                {/block:SubmissionsEnabled}
+                		
+            </ul>
+            
+            <aside id="svbtle_linkback">
+                <a href="#">tm-sbvtle</a> forked from <a href="https://github.com/gravityonmars/wp-svbtle">wp-sbvtle</a><br />
+                {lang:Powered by Tumblr 2}
+            </aside>
+        </header>
+        
+        <section id="river" role="main">
+        
+        
+            {block:SearchPage}
+            <header id="begin">
+                {block:NoSearchResults}<time id="top_time">{lang:No results for SearchQuery 2}</time>{/block:NoSearchResults}
+                <time id="top_time">{lang:Found SearchResultCount results for SearchQuery 2}</time>
+            </header>
+            {/block:SearchPage}
+            
+            {block:TagPage}
+            <header id="begin">
+                <time id="top_time">{lang:Posts tagged Tag 2}</time>
+            </header>
+            {/block:TagPage}
+            
+
+
+
+            {block:Posts}
+            
+                        
+            {block:Text}
+            <article id="post-{PostID}" class="post">
+                {block:Title}
+                <h2 class="entry-title">
+                    <a href="{Permalink}" class="title">{Title}</a>
+                    {block:IfShowAnchor}
+                    <a href="{Permalink}" class="anchor">
+                        <img src="{image:Anchor}" class="scalable">
+                    </a>
+                    {/block:IfShowAnchor}
+                </h2>
+                {/block:Title}
+                <div class="entry-content">
+                    {Body}
+                    {block:More}
+                    <p class="more">
+                        <a href="{Permalink}">{lang:Continue reading} <span class="meta-nav">&rarr;</span></a>
+                    </p>
+                    {/block:More}
+                    {block:IfShowTags}{block:HasTags}
+                    <pre><code class="tags">{lang:Tags}:{block:Tags} <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</code></pre>
+                    {/block:HasTags}{/block:IfShowTags}
+                    <ul class="meta">
+                        {block:IfShowDates}{block:Date}
+                        <li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>
+                        {/block:Date}{/block:IfShowDates}
+                        {block:ContentSource}
+                        <li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>
+                        {/block:ContentSource}
+                        {block:RebloggedFrom}
+                        <li class="reblog"><a href="{ReblogParentURL}">{lang:Reblogged}: {ReblogParentName}</a></li>
+                        {/block:RebloggedFrom}
+                    </ul>
+                </div>
+                {block:IfShowNotes}{block:NoteCount}
+                <aside class="kudo kudoable" id="post-{PostID}">
+                    <a href="{Permalink}" class="counter">
+                        <span class="num">{NoteCount}</span>
+                        <span class="txt">{lang:Notes}</span>
+                    </a>
+                </aside>
+                {/block:NoteCount}{/block:IfShowNotes}
+            </article>
+            {/block:Text}
+            
+            {block:Photo}
+            <article id="post-{PostID}" class="post">
+                <p>
+                    {LinkOpenTag}
+                        <img src="{PhotoURL-500}" alt="{PhotoAlt}" class="alignnone size-full" />
+                    {LinkCloseTag}
+                    {block:HighRes}{block:IfShowHDPhotoLink}
+                    <span class="high-res"><a href="{PhotoURL-HighRes}">{lang:Click for high-res photo}</a></span>
+                    {/block:IfShowHDPhotoLink}{/block:HighRes}
+                </p>
+                <div class="entry-content">
+                    {block:Caption}<p>{Caption}</p>{/block:Caption}
+                    {block:IfShowTags}{block:HasTags}
+                    <pre><code class="tags">{lang:Tags}:{block:Tags} <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</code></pre>
+                    {/block:HasTags}{/block:IfShowTags}
+                    <ul class="meta">
+                        {block:IfShowDates}{block:Date}
+                        <li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>
+                        {/block:Date}{/block:IfShowDates}
+                        {block:ContentSource}
+                        <li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>
+                        {/block:ContentSource}
+                        {block:RebloggedFrom}
+                        <li class="reblog"><a href="{ReblogParentURL}">{lang:Reblogged}: {ReblogParentName}</a></li>
+                        {/block:RebloggedFrom}
+                    </ul>
+                </div>
+                {block:IfShowNotes}{block:NoteCount}
+                <aside class="kudo kudoable" id="post-{PostID}">
+                    <a href="{Permalink}" class="counter">
+                        <span class="num">{NoteCount}</span>
+                        <span class="txt">{lang:Notes}</span>
+                    </a>
+                </aside>
+                {/block:NoteCount}{/block:IfShowNotes}
+            </article>
+            {/block:Photo}
+            
+            {block:Photoset}
+            <article id="post-{PostID}" class="post">
+                {Photoset-500}
+                <div class="entry-content">
+                    {block:Caption}<p>{Caption}</p>{/block:Caption}
+                    {block:IfShowTags}{block:HasTags}
+                    <pre><code class="tags">{lang:Tags}:{block:Tags} <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</code></pre>
+                    {/block:HasTags}{/block:IfShowTags}
+                    <ul class="meta">
+                        {block:IfShowDates}{block:Date}
+                        <li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>
+                        {/block:Date}{/block:IfShowDates}
+                        {block:ContentSource}
+                        <li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>
+                        {/block:ContentSource}
+                        {block:RebloggedFrom}
+                        <li class="reblog"><a href="{ReblogParentURL}">{lang:Reblogged}: {ReblogParentName}</a></li>
+                        {/block:RebloggedFrom}
+                    </ul>
+                </div>
+                {block:IfShowNotes}{block:NoteCount}
+                <aside class="kudo kudoable" id="post-{PostID}">
+                    <a href="{Permalink}" class="counter">
+                        <span class="num">{NoteCount}</span>
+                        <span class="txt">{lang:Notes}</span>
+                    </a>
+                </aside>
+                {/block:NoteCount}{/block:IfShowNotes}
+            </article>
+            {/block:Photoset}
+            
+            {block:Quote}
+            <article id="post-{PostID}" class="post">
+                <div class="entry-content">
+                    <p class="quote">{Quote}</p>
+                    {block:Source}<p class="quote-source">{Source}</p>{/block:Source}
+                    {block:IfShowTags}{block:HasTags}
+                    <pre><code class="tags">{lang:Tags}:{block:Tags} <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</code></pre>
+                    {/block:HasTags}{/block:IfShowTags}
+                    <ul class="meta">
+                        {block:IfShowDates}{block:Date}
+                        <li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>
+                        {/block:Date}{/block:IfShowDates}
+                        {block:ContentSource}
+                        <li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>
+                        {/block:ContentSource}
+                        {block:RebloggedFrom}
+                        <li class="reblog"><a href="{ReblogParentURL}">{lang:Reblogged}: {ReblogParentName}</a></li>
+                        {/block:RebloggedFrom}
+                    </ul>
+                </div>
+                {block:IfShowNotes}{block:NoteCount}
+                <aside class="kudo kudoable" id="post-{PostID}">
+                    <a href="{Permalink}" class="counter">
+                        <span class="num">{NoteCount}</span>
+                        <span class="txt">{lang:Notes}</span>
+                    </a>
+                </aside>
+                {/block:NoteCount}{/block:IfShowNotes}
+            </article>
+            {/block:Quote}
+            
+            {block:Link}
+            <article id="post-{PostID}" class="post">
+                <h2 class="entry-title">
+                    <a href="{URL}" class="title" {Target}>{Name}</a>
+                    {block:IfShowAnchor}
+                    <a href="{Permalink}" class="anchor">
+                        <img src="{image:Anchor}" class="scalable">
+                    </a>
+                    {/block:IfShowAnchor}
+                </h2>
+                <div class="entry-content">
+                    {block:Description}<p>{Description}</p>{/block:Description}
+                    {block:IfShowTags}{block:HasTags}
+                    <pre><code class="tags">{lang:Tags}:{block:Tags} <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</code></pre>
+                    {/block:HasTags}{/block:IfShowTags}
+                    <ul class="meta">
+                        {block:IfShowDates}{block:Date}
+                        <li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>
+                        {/block:Date}{/block:IfShowDates}
+                        {block:ContentSource}
+                        <li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>
+                        {/block:ContentSource}
+                        {block:RebloggedFrom}
+                        <li class="reblog"><a href="{ReblogParentURL}">{lang:Reblogged}: {ReblogParentName}</a></li>
+                        {/block:RebloggedFrom}
+                    </ul>
+                </div>
+                {block:IfShowNotes}{block:NoteCount}
+                <aside class="kudo kudoable" id="post-{PostID}">
+                    <a href="{Permalink}" class="counter">
+                        <span class="num">{NoteCount}</span>
+                        <span class="txt">{lang:Notes}</span>
+                    </a>
+                </aside>
+                {/block:NoteCount}{/block:IfShowNotes}
+            </article>
+            {/block:Link}
+            
+            {block:Chat}
+            <article id="post-{PostID}" class="post">
+                {block:Title}
+                <h2 class="entry-title">
+                    {Title}
+                    {block:IfShowAnchor}
+                    <a href="{Permalink}" class="anchor">
+                        <img src="{image:Anchor}" class="scalable">
+                    </a>
+                    {/block:IfShowAnchor}
+                </h2>
+                {/block:Title}
+                <div class="entry-content">
+                    <ul class="chat">
+                        {block:Lines}
+                        <li class="{Alt} user_{UserNumber}">
+                            {block:Label}
+                            <span class="label">{Label}</span>
+                            {/block:Label}
+                            {Line}
+                        </li>
+                        {/block:Lines}
+                    </ul>
+                    {block:IfShowTags}{block:HasTags}
+                    <pre><code class="tags">{lang:Tags}:{block:Tags} <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</code></pre>
+                    {/block:HasTags}{/block:IfShowTags}
+                    <ul class="meta">
+                        {block:IfShowDates}{block:Date}
+                        <li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>
+                        {/block:Date}{/block:IfShowDates}
+                        {block:ContentSource}
+                        <li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>
+                        {/block:ContentSource}
+                        {block:RebloggedFrom}
+                        <li class="reblog"><a href="{ReblogParentURL}">{lang:Reblogged}: {ReblogParentName}</a></li>
+                        {/block:RebloggedFrom}
+                    </ul>
+                </div>
+                {block:IfShowNotes}{block:NoteCount}
+                <aside class="kudo kudoable" id="post-{PostID}">
+                    <a href="{Permalink}" class="counter">
+                        <span class="num">{NoteCount}</span>
+                        <span class="txt">{lang:Notes}</span>
+                    </a>
+                </aside>
+                {/block:NoteCount}{/block:IfShowNotes}
+            </article>
+            {/block:Chat}
+            
+            {block:Video}
+            <article id="post-{PostID}" class="post">
+                {Video-500}
+                <div class="entry-content">
+                    {block:Caption}<p>{Caption}</p>{/block:Caption}
+                    {block:IfShowTags}{block:HasTags}
+                    <pre><code class="tags">{lang:Tags}:{block:Tags} <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</code></pre>
+                    {/block:HasTags}{/block:IfShowTags}
+                    <ul class="meta">
+                        {block:IfShowDates}{block:Date}
+                        <li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>
+                        {/block:Date}{/block:IfShowDates}
+                        {block:ContentSource}
+                        <li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>
+                        {/block:ContentSource}
+                        {block:RebloggedFrom}
+                        <li class="reblog"><a href="{ReblogParentURL}">{lang:Reblogged}: {ReblogParentName}</a></li>
+                        {/block:RebloggedFrom}
+                    </ul>
+                </div>
+                {block:IfShowNotes}{block:NoteCount}
+                <aside class="kudo kudoable" id="post-{PostID}">
+                    <a href="{Permalink}" class="counter">
+                        <span class="num">{NoteCount}</span>
+                        <span class="txt">{lang:Notes}</span>
+                    </a>
+                </aside>
+                {/block:NoteCount}{/block:IfShowNotes}
+            </article>
+            {/block:Video}
+            
+            {block:Audio}
+            <article id="post-{PostID}" class="post">
+                <h2 class="entry-title">
+                    {block:TrackName}{TrackName}{/block:TrackName} &mdash; {block:Artist}{Artist}{/block:Artist}
+                    {block:IfShowAnchor}
+                    <a href="{Permalink}" class="anchor">
+                        <img src="{image:Anchor}" class="scalable">
+                    </a>
+                    {/block:IfShowAnchor}
+                </h2>
+                {block:AudioEmbed}{AudioEmbed-500}{/block:AudioEmbed}
+                {block:AlbumArt}<img src="{AlbumArtURL}" alt="{block:TrackName}{TrackName}{/block:TrackName}" class="album-art"/>{/block:AlbumArt}
+                {AudioPlayerBlack}
+                <div class="entry-content">
+                    {block:Caption}<p>{Caption}</p>{/block:Caption}
+                    {block:IfShowTags}{block:HasTags}
+                    <pre><code class="tags">{lang:Tags}:{block:Tags} <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</code></pre>
+                    {/block:HasTags}{/block:IfShowTags}
+                    <ul class="meta">
+                        {block:IfShowDates}{block:Date}
+                        <li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>
+                        {/block:Date}{/block:IfShowDates}
+                        {block:ContentSource}
+                        <li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>
+                        {/block:ContentSource}
+                        {block:RebloggedFrom}
+                        <li class="reblog"><a href="{ReblogParentURL}">{lang:Reblogged}: {ReblogParentName}</a></li>
+                        {/block:RebloggedFrom}
+                    </ul>
+                </div>
+                {block:IfShowNotes}{block:NoteCount}
+                <aside class="kudo kudoable" id="post-{PostID}">
+                    <a href="{Permalink}" class="counter">
+                        <span class="num">{NoteCount}</span>
+                        <span class="txt">{lang:Notes}</span>
+                    </a>
+                </aside>
+                {/block:NoteCount}{/block:IfShowNotes}
+            </article>
+            {/block:Audio}
+            
+            {block:Answer}
+            <article id="post-{PostID}" class="post">
+                <h2 class="entry-title">
+                    <img src="{AskerPortraitURL-30}" class="avatar"/>
+                    {lang:Asker asked 2}:
+                    {block:IfShowAnchor}
+                    <a href="{Permalink}" class="anchor">
+                        <img src="{image:Anchor}" class="scalable">
+                    </a>
+                    {/block:IfShowAnchor}
+                </h2>
+                <div class="entry-content">
+                    <p class="quote">{Question}</p>
+                    <p class="answer">{Answer}</p>
+                    {block:IfShowTags}{block:HasTags}
+                    <pre><code class="tags">{lang:Tags}:{block:Tags} <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</code></pre>
+                    {/block:HasTags}{/block:IfShowTags}
+                    <ul class="meta">
+                        {block:IfShowDates}{block:Date}
+                        <li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>
+                        {/block:Date}{/block:IfShowDates}
+                        {block:ContentSource}
+                        <li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>
+                        {/block:ContentSource}
+                        {block:RebloggedFrom}
+                        <li class="reblog"><a href="{ReblogParentURL}">{lang:Reblogged}: {ReblogParentName}</a></li>
+                        {/block:RebloggedFrom}
+                    </ul>
+                </div>
+                {block:IfShowNotes}{block:NoteCount}
+                <aside class="kudo kudoable" id="post-{PostID}">
+                    <a href="{Permalink}" class="counter">
+                        <span class="num">{NoteCount}</span>
+                        <span class="txt">{lang:Notes}</span>
+                    </a>
+                </aside>
+                {/block:NoteCount}{/block:IfShowNotes}
+            </article>
+            {/block:Answer}
+            
+            
+            
+            {block:IfDisqus}
+            <article class="notes">
+                <h2>Disqus</h2>
+                <script type="text/javascript">var disqus_url = "{Permalink}"; var disqus_title ="{block:PostTitle}{PostTitle}{/block:PostTitle}";</script>{block:Permalink}<div id="disqus_thread"></div>
+                <script type="text/javascript">
+                  /**
+                * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread]
+                */
+                  (function() {
+                   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = 'http://{text:Disqus}.disqus.com/embed.js';
+                   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                  })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="/?ref_noscript={text:Disqus}">comments powered by Disqus.</a></noscript>
+                <a href="" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+                {/block:Permalink}<script type="text/javascript">
+                var disqus_shortname = '{text:Disqus}';
+                (function () {
+                  var s = document.createElement('script'); s.async = true;
+                  s.src = 'http://{text:Disqus}.disqus.com/count.js';
+                  (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+                }());
+                </script>
+            </article>
+            {/block:IfDisqus}
+            
+            {block:IfShowNotes}{block:PermalinkPage}
+            <article class="post">
+                {block:NoteCount}<h2>{NoteCountWithLabel}</h2>{/block:NoteCount}
+                <div id="post_notes">{PostNotes}</div>
+            </article>
+            {/block:PermalinkPage}{/block:IfShowNotes}
+                        
+            {/block:Posts}
+            
+
+
+            {block:IfNotInfinateScroll}{block:Pagination}
+            <nav class="pagination">
+                {block:NextPage}
+                <span class="next">
+                    <a href="{NextPage}">{lang:Older}&nbsp;&nbsp;&nbsp;→</a>
+                </span>
+                {block:NextPage}
+                {block:PreviousPage}
+                <span class="prev">
+                    <a href="{PreviousPage}">←&nbsp;&nbsp;&nbsp;{lang:Newer}</a>
+                </span>
+                {/block:PreviousPage}
+            </nav>
+            {/block:Pagination}{block:IfNotInfinateScroll}
+
+
+        </section>
+    </body>
+</html>
