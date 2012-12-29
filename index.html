@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <!--
 tm-svbtle is a fork of wp-svbtle (https://github.com/gravityonmars/wp-svbtle) by Gravity on Mars (http://themeskult.com/)
 tm-svbtle is released under the GNU General Public License v2.0 (http://www.gnu.org/licenses/gpl-2.0.html)
@@ -8,22 +9,20 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
-
-<!DOCTYPE html>
 <!--[if lt IE 7 ]><html lang="en-US" class="no-js ie ie6 lte7 lte8 lte9"><![endif]--> 
 <!--[if IE 7 ]><html lang="en-US" class="no-js ie ie7 lte7 lte8 lte9"><![endif]-->
 <!--[if IE 8 ]><html lang="en-US" class="no-js ie ie8 lte8 lte9"><![endif]-->
 <!--[if IE 9 ]><html lang="en-US" class="no-js ie ie9 lte9"><![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en-US" class="no-js"><!--<![endif]-->
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.5, minimum-scale=0.5">
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.5, minimum-scale=0.5" />
         <title>{Title}</title>
         <link rel="profile" href="http://gmpg.org/xfn/11" />
         <link rel="stylesheet" type="text/css" media="all" href="http://static.tumblr.com/tytjlvu/kSfmfpl5c/style.css" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.5, minimum-scale=0.5">
-        <link rel="shortcut icon" href="{Favicon}">
-        <link rel="alternate" type="application/rss+xml" href="{RSS}">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.5, minimum-scale=0.5" />
+        <link rel="shortcut icon" href="{Favicon}" />
+        <link rel="alternate" type="application/rss+xml" href="{RSS}" />
         {block:Description}<meta name="description" content="{MetaDescription}" />{/block:Description}
         <!--[if lt IE 9]>
             <script src="http://static.tumblr.com/tytjlvu/MBumfpl8f/html5.js"></script>
@@ -48,7 +47,6 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         
         <meta name="image:Anchor" content="http://static.tumblr.com/tytjlvu/N6Tmfpfnc/anchor.png"/> 
                
-        <meta name="text:Disqus" content=""/>
         <meta name="text:Facebook" content=""/>
         <meta name="text:Pinterest" content=""/>
         <meta name="text:Twitter" content=""/>
@@ -155,10 +153,7 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         div#post_notes ol.notes li.note blockquote a { border-bottom: none; }
         div#post_notes ol.notes li.note a.more_notes_link { font-weight: bold; font-size: 125%; } 
         
-        
-
         </style>
-        
         
     </head>
     <body class="home blog">
@@ -258,7 +253,7 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     <a href="{Permalink}" class="title">{Title}</a>
                     {block:IfShowAnchor}
                     <a href="{Permalink}" class="anchor">
-                        <img src="{image:Anchor}" class="scalable">
+                        <img src="{image:Anchor}" alt="{lang:Permalink}" class="scalable"/>
                     </a>
                     {/block:IfShowAnchor}
                 </h2>
@@ -286,7 +281,7 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     </ul>
                 </div>
                 {block:IfShowNotes}{block:NoteCount}
-                <aside class="kudo kudoable" id="post-{PostID}">
+                <aside class="kudo kudoable" id="note-{PostID}">
                     <a href="{Permalink}" class="counter">
                         <span class="num">{NoteCount}</span>
                         <span class="txt">{lang:Notes}</span>
@@ -324,7 +319,7 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     </ul>
                 </div>
                 {block:IfShowNotes}{block:NoteCount}
-                <aside class="kudo kudoable" id="post-{PostID}">
+                <aside class="kudo kudoable" id="note-{PostID}">
                     <a href="{Permalink}" class="counter">
                         <span class="num">{NoteCount}</span>
                         <span class="txt">{lang:Notes}</span>
@@ -355,7 +350,7 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     </ul>
                 </div>
                 {block:IfShowNotes}{block:NoteCount}
-                <aside class="kudo kudoable" id="post-{PostID}">
+                <aside class="kudo kudoable" id="note-{PostID}">
                     <a href="{Permalink}" class="counter">
                         <span class="num">{NoteCount}</span>
                         <span class="txt">{lang:Notes}</span>
@@ -386,7 +381,7 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     </ul>
                 </div>
                 {block:IfShowNotes}{block:NoteCount}
-                <aside class="kudo kudoable" id="post-{PostID}">
+                <aside class="kudo kudoable" id="note-{PostID}">
                     <a href="{Permalink}" class="counter">
                         <span class="num">{NoteCount}</span>
                         <span class="txt">{lang:Notes}</span>
@@ -402,7 +397,7 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     <a href="{URL}" class="title" {Target}>{Name}</a>
                     {block:IfShowAnchor}
                     <a href="{Permalink}" class="anchor">
-                        <img src="{image:Anchor}" class="scalable">
+                        <img src="{image:Anchor}" alt="{lang:Permalink}" class="scalable"/>
                     </a>
                     {/block:IfShowAnchor}
                 </h2>
@@ -424,7 +419,7 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     </ul>
                 </div>
                 {block:IfShowNotes}{block:NoteCount}
-                <aside class="kudo kudoable" id="post-{PostID}">
+                <aside class="kudo kudoable" id="note-{PostID}">
                     <a href="{Permalink}" class="counter">
                         <span class="num">{NoteCount}</span>
                         <span class="txt">{lang:Notes}</span>
@@ -441,7 +436,7 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     {Title}
                     {block:IfShowAnchor}
                     <a href="{Permalink}" class="anchor">
-                        <img src="{image:Anchor}" class="scalable">
+                        <img src="{image:Anchor}" alt="{lang:Permalink}" class="scalable"/>
                     </a>
                     {/block:IfShowAnchor}
                 </h2>
@@ -473,7 +468,7 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     </ul>
                 </div>
                 {block:IfShowNotes}{block:NoteCount}
-                <aside class="kudo kudoable" id="post-{PostID}">
+                <aside class="kudo kudoable" id="note-{PostID}">
                     <a href="{Permalink}" class="counter">
                         <span class="num">{NoteCount}</span>
                         <span class="txt">{lang:Notes}</span>
@@ -504,7 +499,7 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     </ul>
                 </div>
                 {block:IfShowNotes}{block:NoteCount}
-                <aside class="kudo kudoable" id="post-{PostID}">
+                <aside class="kudo kudoable" id="note-{PostID}">
                     <a href="{Permalink}" class="counter">
                         <span class="num">{NoteCount}</span>
                         <span class="txt">{lang:Notes}</span>
@@ -520,7 +515,7 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     {block:TrackName}{TrackName}{/block:TrackName} &mdash; {block:Artist}{Artist}{/block:Artist}
                     {block:IfShowAnchor}
                     <a href="{Permalink}" class="anchor">
-                        <img src="{image:Anchor}" class="scalable">
+                        <img src="{image:Anchor}" alt="{lang:Permalink}" class="scalable"/>
                     </a>
                     {/block:IfShowAnchor}
                 </h2>
@@ -545,7 +540,7 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     </ul>
                 </div>
                 {block:IfShowNotes}{block:NoteCount}
-                <aside class="kudo kudoable" id="post-{PostID}">
+                <aside class="kudo kudoable" id="note-{PostID}">
                     <a href="{Permalink}" class="counter">
                         <span class="num">{NoteCount}</span>
                         <span class="txt">{lang:Notes}</span>
@@ -558,11 +553,11 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
             {block:Answer}
             <article id="post-{PostID}" class="post">
                 <h2 class="entry-title">
-                    <img src="{AskerPortraitURL-30}" class="avatar"/>
+                    <img src="{AskerPortraitURL-30}" alt="{lang:Asker}" class="avatar"/>
                     {lang:Asker asked 2}:
                     {block:IfShowAnchor}
                     <a href="{Permalink}" class="anchor">
-                        <img src="{image:Anchor}" class="scalable">
+                        <img src="{image:Anchor}" alt="{lang:Permalink}" class="scalable"/>
                     </a>
                     {/block:IfShowAnchor}
                 </h2>
@@ -585,7 +580,7 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     </ul>
                 </div>
                 {block:IfShowNotes}{block:NoteCount}
-                <aside class="kudo kudoable" id="post-{PostID}">
+                <aside class="kudo kudoable" id="note-{PostID}">
                     <a href="{Permalink}" class="counter">
                         <span class="num">{NoteCount}</span>
                         <span class="txt">{lang:Notes}</span>
@@ -595,35 +590,7 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
             </article>
             {/block:Answer}
             
-            
-            
-            {block:IfDisqus}
-            <article class="notes">
-                <h2>Disqus</h2>
-                <script type="text/javascript">var disqus_url = "{Permalink}"; var disqus_title ="{block:PostTitle}{PostTitle}{/block:PostTitle}";</script>{block:Permalink}<div id="disqus_thread"></div>
-                <script type="text/javascript">
-                  /**
-                * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread]
-                */
-                  (function() {
-                   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                  dsq.src = 'http://{text:Disqus}.disqus.com/embed.js';
-                   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                  })();
-                </script>
-                <noscript>Please enable JavaScript to view the <a href="/?ref_noscript={text:Disqus}">comments powered by Disqus.</a></noscript>
-                <a href="" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-                {/block:Permalink}<script type="text/javascript">
-                var disqus_shortname = '{text:Disqus}';
-                (function () {
-                  var s = document.createElement('script'); s.async = true;
-                  s.src = 'http://{text:Disqus}.disqus.com/count.js';
-                  (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-                }());
-                </script>
-            </article>
-            {/block:IfDisqus}
-            
+                        
             {block:IfShowNotes}{block:PermalinkPage}
             <article class="post">
                 {block:NoteCount}<h2>{NoteCountWithLabel}</h2>{/block:NoteCount}
