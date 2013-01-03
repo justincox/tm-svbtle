@@ -34,9 +34,10 @@ Tumblr's Theme Garden is a boys-club that isn't friendly to individual developer
 
 #Change Log
 
-Version 1.0.2 - Added Pages Support
-Version 1.0.1 - Removed Disqus
-Version 1.0 - Posted to GitHub
+- Version 1.0.3 - Added Custom CSS Support
+- Version 1.0.2 - Added Pages Support
+- Version 1.0.1 - Removed Disqus
+- Version 1.0 - Posted to GitHub
 
 #License
 tm-svbtle is released under the GNU General Public License v2.0 (http://www.gnu.org/licenses/gpl-2.0.html)
