@@ -34,9 +34,17 @@ Tumblr's Theme Garden is a boys-club that isn't friendly to individual developer
 
 #Change Log
 
-- Version 1.0.3 - Added Custom CSS Support
-- Version 1.0.2 - Added Pages Support
-- Version 1.0.1 - Removed Disqus
+- Version 1.1 - Added multiple new features:
+ - Multiple date choices
+ - Ability to hide the logo
+ - Permalink icons for every post
+ - Enhanced titles
+ - Support for Content Source Images
+ - Fixed Disqus support
+ - Added support for Google Analytics
+- Version 1.0.3 - Added support for Custom CSS
+- Version 1.0.2 - Added support for Pages
+- Version 1.0.1 - Removed Disqus due to broken code
 - Version 1.0 - Posted to GitHub
 
 #License
