@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-tm-svbtle version 1.0.3
+tm-svbtle version 1.1
 tm-svbtle is a fork of wp-svbtle (https://github.com/gravityonmars/wp-svbtle) by Gravity on Mars (http://themeskult.com/)
 tm-svbtle is released under the GNU General Public License v2.0 (http://www.gnu.org/licenses/gpl-2.0.html)
 
@@ -18,7 +18,7 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     <head>
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.5, minimum-scale=0.5" />
-        <title>{Title}</title>
+        <title>{Title}{block:PostTitle}: {PostTitle}{/block:PostTitle}{block:PostSummary}: {PostSummary}{/block:PostSummary}</title>
         <link rel="profile" href="http://gmpg.org/xfn/11" />
         <link rel="stylesheet" type="text/css" media="all" href="http://static.tumblr.com/tytjlvu/kSfmfpl5c/style.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.5, minimum-scale=0.5" />
@@ -39,16 +39,20 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         <meta name="font:Title" content="Baskerville,Georgia,serif;"/>
         
         <meta name="if:Infinate Scroll" content="0"/>
-        <meta name="if:Show Anchor" content="1"/>
+        <meta name="if:Show Permalink" content="1"/>
         <meta name="if:Show Dates" content="0"/>
         <meta name="if:Show HD Photo Link" content="0"/>
+        <meta name="if:Show Logo" content="1"/>
         <meta name="if:Show Notes" content="0"/>
+        <meta name="if:Show Relative Dates" content="1"/>
         <meta name="if:Show Search" content="1"/>
         <meta name="if:Show Tags" content="0"/>
         
-        <meta name="image:Anchor" content="http://static.tumblr.com/tytjlvu/N6Tmfpfnc/anchor.png"/> 
-               
+        <meta name="image:Permalink" content="http://static.tumblr.com/tytjlvu/N6Tmfpfnc/anchor.png"/> 
+        
+        <meta name="text:Disqus" content=""/>
         <meta name="text:Facebook" content=""/>
+        <meta name="text:Google Analytics" content=""/>
         <meta name="text:Pinterest" content=""/>
         <meta name="text:Twitter" content=""/>
         <meta name="text:YouTube" content=""/>
@@ -76,7 +80,7 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         header#sidebar h1#blog_name a{font-family:{font:Title};}
         
         /* Custom Images */
-        article h2 img.scalable {background-image:url("{image:Anchor}");}
+        article h2 img.scalable, ul.meta li.permalink img.scalable {background: #fff;}
         aside#logo div a{background-image: url("{PortraitURL-64}");}
         #searchform #s {background: url("http://static.tumblr.com/tytjlvu/HLomfrpzn/icon-search.png") 14px center no-repeat;}
         
@@ -89,6 +93,8 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         time#top_time span.search_query:after,h2.entry-title span.search_query:after { content: close-quote; }
         
         aside#svbtle_linkback { font-size: 55%; }
+        
+        {block:IfNotShowLogo}aside#logo {display:none;}{/block:IfNotShowLogo}
                 
         /* Text */
         h1{font-size:28px;}
@@ -106,16 +112,19 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         p a:visited,a.tag:visited,article h2 a:visited,li.note span.action a:visited,a:more_notes_link:visited,ul.meta li a:visited { color:#4d4d4d; }
         
         /* Posts */
-        article h2 img.scalable{height:22px;width:22px;}
-        article.post h2 a.anchor:link{border: 0;}
-        article.post h2 a.anchor:hover{background: transparent;}
+        article h2 img.scalable {height:22px;width:22px;}
+        ul.meta li.permalink img.scalable {height: 18px; width: 18px;}
+        article.post h2 a.permalink:link, ul.meta li.permalink a.permalink:link {border: 0;}
+        article.post h2 a.permalink:hover, ul.meta li.permalink a.permlink:hover {background: transparent;}
         p.more { font-size: 85%; }
                 
         code.tags { font-family: {font:Body}; font-size: 75%; }
         a.tag:before { content: "#"; }
         
         ul.meta { list-style-type: none; margin: 0px; padding: 0px; }
-        ul.meta li.date,ul.meta li.reblog,ul.meta li.source { list-style-type: none; display: inline; margin-left: 0; padding-left: 0; margin-right: 10px; font-size: 75%; }        
+        ul.meta li.date,ul.meta li.reblog,ul.meta li.source,ul.meta li.permalink { list-style-type: none; display: inline; margin-left: 0; padding-left: 0; margin-right: 10px; font-size: 75%; }
+        
+        li.source img, li.permalink img { display: inline; }
         
         /* Photo Post */
         span.high-res { font-size: 75%; }
@@ -262,11 +271,6 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 {block:Title}
                 <h2 class="entry-title">
                     <a href="{Permalink}" class="title">{Title}</a>
-                    {block:IfShowAnchor}
-                    <a href="{Permalink}" class="anchor">
-                        <img src="{image:Anchor}" alt="{lang:Permalink}" class="scalable"/>
-                    </a>
-                    {/block:IfShowAnchor}
                 </h2>
                 {/block:Title}
                 <div class="entry-content">
@@ -280,11 +284,14 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     <pre><code class="tags">{lang:Tags}:{block:Tags} <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</code></pre>
                     {/block:HasTags}{/block:IfShowTags}
                     <ul class="meta">
+                        {block:IfShowPermalink}<li class="permalink"><a href="{ShortURL}" class="permalink"><img src="{image:Permalink}" alt="{lang:Permalink}" class="scalable"/></a>{/block:IfShowPermalink}
                         {block:IfShowDates}{block:Date}
-                        <li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>
+                        {block:IfShowRelativeDates}<li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>{/block:IfShowRelativeDates}
+                        {block:IfNotShowRelativeDates}<li class="date"><a href="{Permalink}">{lang:Posted on Month DayOfMonth Year}</a></li>{/block:IfNotShowRelativeDates}
                         {/block:Date}{/block:IfShowDates}
                         {block:ContentSource}
-                        <li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>
+                        {block:SourceLogo}<li class="source"><a href="{SourceURL}">{lang:Source}: <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" /></a></li>{/block:SourceLogo}
+                        {block:NoSourceLogo}<li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>{/block:NoSourceLogo}
                         {/block:ContentSource}
                         {block:RebloggedFrom}
                         <li class="reblog"><a href="{ReblogParentURL}">{lang:Reblogged}: {ReblogParentName}</a></li>
@@ -318,11 +325,14 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     <pre><code class="tags">{lang:Tags}:{block:Tags} <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</code></pre>
                     {/block:HasTags}{/block:IfShowTags}
                     <ul class="meta">
+                        {block:IfShowPermalink}<li class="permalink"><a href="{ShortURL}" class="permalink"><img src="{image:Permalink}" alt="{lang:Permalink}" class="scalable"/></a>{/block:IfShowPermalink}
                         {block:IfShowDates}{block:Date}
-                        <li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>
+                        {block:IfShowRelativeDates}<li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>{/block:IfShowRelativeDates}
+                        {block:IfNotShowRelativeDates}<li class="date"><a href="{Permalink}">{lang:Posted on Month DayOfMonth Year}</a></li>{/block:IfNotShowRelativeDates}
                         {/block:Date}{/block:IfShowDates}
                         {block:ContentSource}
-                        <li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>
+                        {block:SourceLogo}<li class="source"><a href="{SourceURL}">{lang:Source}: <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" /></a></li>{/block:SourceLogo}
+                        {block:NoSourceLogo}<li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>{/block:NoSourceLogo}
                         {/block:ContentSource}
                         {block:RebloggedFrom}
                         <li class="reblog"><a href="{ReblogParentURL}">{lang:Reblogged}: {ReblogParentName}</a></li>
@@ -349,11 +359,14 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     <pre><code class="tags">{lang:Tags}:{block:Tags} <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</code></pre>
                     {/block:HasTags}{/block:IfShowTags}
                     <ul class="meta">
+                        {block:IfShowPermalink}<li class="permalink"><a href="{ShortURL}" class="permalink"><img src="{image:Permalink}" alt="{lang:Permalink}" class="scalable"/></a>{/block:IfShowPermalink}
                         {block:IfShowDates}{block:Date}
-                        <li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>
+                        {block:IfShowRelativeDates}<li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>{/block:IfShowRelativeDates}
+                        {block:IfNotShowRelativeDates}<li class="date"><a href="{Permalink}">{lang:Posted on Month DayOfMonth Year}</a></li>{/block:IfNotShowRelativeDates}
                         {/block:Date}{/block:IfShowDates}
                         {block:ContentSource}
-                        <li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>
+                        {block:SourceLogo}<li class="source"><a href="{SourceURL}">{lang:Source}: <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" /></a></li>{/block:SourceLogo}
+                        {block:NoSourceLogo}<li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>{/block:NoSourceLogo}
                         {/block:ContentSource}
                         {block:RebloggedFrom}
                         <li class="reblog"><a href="{ReblogParentURL}">{lang:Reblogged}: {ReblogParentName}</a></li>
@@ -380,11 +393,14 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     <pre><code class="tags">{lang:Tags}:{block:Tags} <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</code></pre>
                     {/block:HasTags}{/block:IfShowTags}
                     <ul class="meta">
+                        {block:IfShowPermalink}<li class="permalink"><a href="{ShortURL}" class="permalink"><img src="{image:Permalink}" alt="{lang:Permalink}" class="scalable"/></a>{/block:IfShowPermalink}
                         {block:IfShowDates}{block:Date}
-                        <li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>
+                        {block:IfShowRelativeDates}<li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>{/block:IfShowRelativeDates}
+                        {block:IfNotShowRelativeDates}<li class="date"><a href="{Permalink}">{lang:Posted on Month DayOfMonth Year}</a></li>{/block:IfNotShowRelativeDates}
                         {/block:Date}{/block:IfShowDates}
                         {block:ContentSource}
-                        <li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>
+                        {block:SourceLogo}<li class="source"><a href="{SourceURL}">{lang:Source}: <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" /></a></li>{/block:SourceLogo}
+                        {block:NoSourceLogo}<li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>{/block:NoSourceLogo}
                         {/block:ContentSource}
                         {block:RebloggedFrom}
                         <li class="reblog"><a href="{ReblogParentURL}">{lang:Reblogged}: {ReblogParentName}</a></li>
@@ -406,11 +422,6 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
             <article id="post-{PostID}" class="post">
                 <h2 class="entry-title">
                     <a href="{URL}" class="title" {Target}>{Name}</a>
-                    {block:IfShowAnchor}
-                    <a href="{Permalink}" class="anchor">
-                        <img src="{image:Anchor}" alt="{lang:Permalink}" class="scalable"/>
-                    </a>
-                    {/block:IfShowAnchor}
                 </h2>
                 <div class="entry-content">
                     {block:Description}<p>{Description}</p>{/block:Description}
@@ -418,11 +429,14 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     <pre><code class="tags">{lang:Tags}:{block:Tags} <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</code></pre>
                     {/block:HasTags}{/block:IfShowTags}
                     <ul class="meta">
+                        {block:IfShowPermalink}<li class="permalink"><a href="{ShortURL}" class="permalink"><img src="{image:Permalink}" alt="{lang:Permalink}" class="scalable"/></a>{/block:IfShowPermalink}
                         {block:IfShowDates}{block:Date}
-                        <li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>
+                        {block:IfShowRelativeDates}<li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>{/block:IfShowRelativeDates}
+                        {block:IfNotShowRelativeDates}<li class="date"><a href="{Permalink}">{lang:Posted on Month DayOfMonth Year}</a></li>{/block:IfNotShowRelativeDates}
                         {/block:Date}{/block:IfShowDates}
                         {block:ContentSource}
-                        <li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>
+                        {block:SourceLogo}<li class="source"><a href="{SourceURL}">{lang:Source}: <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" /></a></li>{/block:SourceLogo}
+                        {block:NoSourceLogo}<li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>{/block:NoSourceLogo}
                         {/block:ContentSource}
                         {block:RebloggedFrom}
                         <li class="reblog"><a href="{ReblogParentURL}">{lang:Reblogged}: {ReblogParentName}</a></li>
@@ -445,11 +459,6 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 {block:Title}
                 <h2 class="entry-title">
                     {Title}
-                    {block:IfShowAnchor}
-                    <a href="{Permalink}" class="anchor">
-                        <img src="{image:Anchor}" alt="{lang:Permalink}" class="scalable"/>
-                    </a>
-                    {/block:IfShowAnchor}
                 </h2>
                 {/block:Title}
                 <div class="entry-content">
@@ -467,11 +476,14 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     <pre><code class="tags">{lang:Tags}:{block:Tags} <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</code></pre>
                     {/block:HasTags}{/block:IfShowTags}
                     <ul class="meta">
+                        {block:IfShowPermalink}<li class="permalink"><a href="{ShortURL}" class="permalink"><img src="{image:Permalink}" alt="{lang:Permalink}" class="scalable"/></a>{/block:IfShowPermalink}
                         {block:IfShowDates}{block:Date}
-                        <li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>
+                        {block:IfShowRelativeDates}<li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>{/block:IfShowRelativeDates}
+                        {block:IfNotShowRelativeDates}<li class="date"><a href="{Permalink}">{lang:Posted on Month DayOfMonth Year}</a></li>{/block:IfNotShowRelativeDates}
                         {/block:Date}{/block:IfShowDates}
                         {block:ContentSource}
-                        <li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>
+                        {block:SourceLogo}<li class="source"><a href="{SourceURL}">{lang:Source}: <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" /></a></li>{/block:SourceLogo}
+                        {block:NoSourceLogo}<li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>{/block:NoSourceLogo}
                         {/block:ContentSource}
                         {block:RebloggedFrom}
                         <li class="reblog"><a href="{ReblogParentURL}">{lang:Reblogged}: {ReblogParentName}</a></li>
@@ -498,11 +510,14 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     <pre><code class="tags">{lang:Tags}:{block:Tags} <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</code></pre>
                     {/block:HasTags}{/block:IfShowTags}
                     <ul class="meta">
+                        {block:IfShowPermalink}<li class="permalink"><a href="{ShortURL}" class="permalink"><img src="{image:Permalink}" alt="{lang:Permalink}" class="scalable"/></a>{/block:IfShowPermalink}
                         {block:IfShowDates}{block:Date}
-                        <li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>
+                        {block:IfShowRelativeDates}<li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>{/block:IfShowRelativeDates}
+                        {block:IfNotShowRelativeDates}<li class="date"><a href="{Permalink}">{lang:Posted on Month DayOfMonth Year}</a></li>{/block:IfNotShowRelativeDates}
                         {/block:Date}{/block:IfShowDates}
                         {block:ContentSource}
-                        <li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>
+                        {block:SourceLogo}<li class="source"><a href="{SourceURL}">{lang:Source}: <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" /></a></li>{/block:SourceLogo}
+                        {block:NoSourceLogo}<li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>{/block:NoSourceLogo}
                         {/block:ContentSource}
                         {block:RebloggedFrom}
                         <li class="reblog"><a href="{ReblogParentURL}">{lang:Reblogged}: {ReblogParentName}</a></li>
@@ -524,11 +539,6 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
             <article id="post-{PostID}" class="post">
                 <h2 class="entry-title">
                     {block:TrackName}{TrackName}{/block:TrackName} &mdash; {block:Artist}{Artist}{/block:Artist}
-                    {block:IfShowAnchor}
-                    <a href="{Permalink}" class="anchor">
-                        <img src="{image:Anchor}" alt="{lang:Permalink}" class="scalable"/>
-                    </a>
-                    {/block:IfShowAnchor}
                 </h2>
                 {block:AudioEmbed}{AudioEmbed-500}{/block:AudioEmbed}
                 {block:AlbumArt}<img src="{AlbumArtURL}" alt="{block:TrackName}{TrackName}{/block:TrackName}" class="album-art"/>{/block:AlbumArt}
@@ -539,11 +549,14 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     <pre><code class="tags">{lang:Tags}:{block:Tags} <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</code></pre>
                     {/block:HasTags}{/block:IfShowTags}
                     <ul class="meta">
+                        {block:IfShowPermalink}<li class="permalink"><a href="{ShortURL}" class="permalink"><img src="{image:Permalink}" alt="{lang:Permalink}" class="scalable"/></a>{/block:IfShowPermalink}
                         {block:IfShowDates}{block:Date}
-                        <li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>
+                        {block:IfShowRelativeDates}<li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>{/block:IfShowRelativeDates}
+                        {block:IfNotShowRelativeDates}<li class="date"><a href="{Permalink}">{lang:Posted on Month DayOfMonth Year}</a></li>{/block:IfNotShowRelativeDates}
                         {/block:Date}{/block:IfShowDates}
                         {block:ContentSource}
-                        <li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>
+                        {block:SourceLogo}<li class="source"><a href="{SourceURL}">{lang:Source}: <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" /></a></li>{/block:SourceLogo}
+                        {block:NoSourceLogo}<li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>{/block:NoSourceLogo}
                         {/block:ContentSource}
                         {block:RebloggedFrom}
                         <li class="reblog"><a href="{ReblogParentURL}">{lang:Reblogged}: {ReblogParentName}</a></li>
@@ -566,11 +579,6 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 <h2 class="entry-title">
                     <img src="{AskerPortraitURL-30}" alt="{lang:Asker}" class="avatar"/>
                     {lang:Asker asked 2}:
-                    {block:IfShowAnchor}
-                    <a href="{Permalink}" class="anchor">
-                        <img src="{image:Anchor}" alt="{lang:Permalink}" class="scalable"/>
-                    </a>
-                    {/block:IfShowAnchor}
                 </h2>
                 <div class="entry-content">
                     <p class="quote">{Question}</p>
@@ -579,11 +587,14 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     <pre><code class="tags">{lang:Tags}:{block:Tags} <a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}</code></pre>
                     {/block:HasTags}{/block:IfShowTags}
                     <ul class="meta">
+                        {block:IfShowPermalink}<li class="permalink"><a href="{ShortURL}" class="permalink"><img src="{image:Permalink}" alt="{lang:Permalink}" class="scalable"/></a>{/block:IfShowPermalink}
                         {block:IfShowDates}{block:Date}
-                        <li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>
+                        {block:IfShowRelativeDates}<li class="date"><a href="{Permalink}">{lang:Posted TimeAgo}</a></li>{/block:IfShowRelativeDates}
+                        {block:IfNotShowRelativeDates}<li class="date"><a href="{Permalink}">{lang:Posted on Month DayOfMonth Year}</a></li>{/block:IfNotShowRelativeDates}
                         {/block:Date}{/block:IfShowDates}
                         {block:ContentSource}
-                        <li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>
+                        {block:SourceLogo}<li class="source"><a href="{SourceURL}">{lang:Source}: <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" /></a></li>{/block:SourceLogo}
+                        {block:NoSourceLogo}<li class="source"><a href="{SourceURL}">{lang:Source}: {SourceTitle}</a></li>{/block:NoSourceLogo}
                         {/block:ContentSource}
                         {block:RebloggedFrom}
                         <li class="reblog"><a href="{ReblogParentURL}">{lang:Reblogged}: {ReblogParentName}</a></li>
@@ -608,11 +619,40 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 <div id="post_notes">{PostNotes}</div>
             </article>
             {/block:PermalinkPage}{/block:IfShowNotes}
-                        
+            
+            
+            {block:IfDisqus}{block:PermalinkPage}
+            <article class="post">
+                <div id="disqus">
+                    <script type="text/javascript">var disqus_url = "{Permalink}"; var disqus_title ="{block:PostTitle}{PostTitle}{/block:PostTitle}";</script>{block:Permalink}<div id="disqus_thread"></div>
+                    <script type="text/javascript">
+                      /**
+                    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread]
+                    */
+                      (function() {
+                       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                      dsq.src = 'http://{text:Disqus}.disqus.com/embed.js';
+                       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                      })();
+                    </script>
+                    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=chowdownorlando">comments powered by Disqus.</a></noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+                    {/block:Permalink}<script type="text/javascript">
+                    var disqus_shortname = '{text:Disqus}';
+                    (function () {
+                      var s = document.createElement('script'); s.async = true;
+                      s.src = 'http://{text:Disqus}.disqus.com/count.js';
+                      (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+                    }());
+                    </script>
+                </div>
+            </article>
+            {/block:PermalinkPage}{/block:IfDisqus}
+            
+            
             {/block:Posts}
             
-
-
+            
             {block:IfNotInfinateScroll}{block:Pagination}
             <nav class="pagination">
                 {block:NextPage}
@@ -630,5 +670,22 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
         </section>
+        
+        {block:IfGoogleAnalytics}
+        <script type="text/javascript">
+        
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', '{text:Google Analytics}']);
+          _gaq.push(['_trackPageview']);
+        
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        
+        </script>
+        {/block:GoogleAnalytics}
+        
     </body>
 </html>
